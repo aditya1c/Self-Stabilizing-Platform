@@ -1,0 +1,25 @@
+const int analogInPinX = A0;
+int sensorValueX = 0;        // value read from the pot
+int outputValueX = 0;
+const int analogInPinY = A1;
+int sensorValueY = 0;        // value read from the pot
+int outputValueY = 0;
+
+void setup() {
+  // initialize serial communications at 9600 bps:
+  Serial.begin(9600);
+  
+}
+
+void loop() {
+  sensorValueX = analogRead(analogInPinX);            
+  outputValueX = (-1.036*sensorValueX)+338.8+140;
+  sensorValueY = analogRead(analogInPinY);            
+  outputValueY =(1.025*sensorValueY)-340.8+140;
+  if (Serial.read() !=0)
+  {Serial.write(outputValueX);
+   Serial.write(outputValueY);
+   }
+  }
+
+
